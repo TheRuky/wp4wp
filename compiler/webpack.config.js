@@ -25,11 +25,10 @@ module.exports = (options) => {
     entry: {
       'styles/main': dev ? [hmr, entry.styles] : entry.styles,
       'scripts/main': dev ? [hmr, entry.scripts] : entry.scripts,
-      // main: dev ? [hmr, entry.scripts, entry.styles] : [entry.scripts, entry.styles]
     },
     output: {
       path: path.resolve('../assets'),
-      publicPath: '/assets/',
+      publicPath: getPublicPath('assets'),
       filename: '[name].js'
     },
     module: {

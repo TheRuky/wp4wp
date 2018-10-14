@@ -12,7 +12,7 @@ const compiler = webpack(config);
 
 const middleware = [
   webpackDevMiddleware(compiler, {
-    publicPath: '/assets/',
+    publicPath: getPublicPath('assets'),
     logLevel: 'silent',
     quiet: true
   }),

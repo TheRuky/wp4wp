@@ -93,7 +93,7 @@ module.exports = (options) => {
             to: path.resolve('../assets'),
           }
         ], {
-          ignore: [ '*.js', '*.scss', '*.css' ]
+          ignore: [ '*.js', '*.ts', '*.scss', '*.css' ]
         })
       ])
     ]

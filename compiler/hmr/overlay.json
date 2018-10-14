@@ -1,0 +1,11 @@
+{
+  "background": "rgba(0, 0, 0, 0.9)",
+  "boxSizing": "border-box",
+  "fontFamily": "Menlo, Consolas, monospace",
+  "fontSize": "large",
+  "height": "100vh",
+  "lineHeight": "1.2",
+  "padding": "2rem",
+  "whiteSpace": "pre-wrap",
+  "width": "100vw"
+}

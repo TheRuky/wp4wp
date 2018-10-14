@@ -23,12 +23,14 @@ module.exports = (options) => {
     devtool: dev ? 'cheap-module-eval-source-map' : false,
     context: path.resolve('assets'),
     entry: {
-      main: dev ? [hmr, entry.scripts, entry.styles] : [entry.scripts, entry.styles]
+      'styles/main': dev ? [hmr, entry.styles] : entry.styles,
+      'scripts/main': dev ? [hmr, entry.scripts] : entry.scripts,
+      // main: dev ? [hmr, entry.scripts, entry.styles] : [entry.scripts, entry.styles]
     },
     output: {
       path: path.resolve('../assets'),
-      publicPath: getPublicPath('assets'),
-      filename: 'scripts/[name].js'
+      publicPath: '/assets/',
+      filename: '[name].js'
     },
     module: {
       rules: [
@@ -73,7 +75,7 @@ module.exports = (options) => {
         new FriendlyErrorsWebpackPlugin()
       ] : [
         new MiniCssExtractWebpackPlugin({
-          filename: 'styles/[name].css'
+          filename: '[name].css'
         }),
         new NonJsEntryCleanupPlugin({
           context: 'styles',

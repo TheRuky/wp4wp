@@ -12,7 +12,7 @@ const compiler = webpack(config);
 
 const middleware = [
   webpackDevMiddleware(compiler, {
-    publicPath: getPublicPath('assets'),
+    publicPath: '/assets/',
     logLevel: 'silent',
     quiet: true
   }),
@@ -29,5 +29,13 @@ browserSync.init({
     middleware
   },
   logLevel: 'silent',
-  files: ['**/*.php'].map(element => path.resolve('../', element))
+  files: ['**/*.php'].map(element => path.resolve('../', element)),
+  snippetOptions: {
+    rule: {
+      match:  /<\/head>/i,
+      fn: function(snippet, match) {
+        return `<script src="/assets/styles/main.js"></script>${snippet}${match}`
+      }
+    }
+  }
 });

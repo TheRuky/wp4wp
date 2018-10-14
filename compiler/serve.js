@@ -5,14 +5,15 @@ const browserSync = require('browser-sync').create();
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
-const config = require('./webpack.config')({ dev: true });
+const { publicFolder, proxyTarget, watch } = require('./config');
+const webpackConfig = require('./webpack.config')({ dev: true });
 const getPublicPath = require('./publicPath');
 
-const compiler = webpack(config);
+const compiler = webpack(webpackConfig);
 
 const middleware = [
   webpackDevMiddleware(compiler, {
-    publicPath: getPublicPath('assets'),
+    publicPath: getPublicPath(publicFolder),
     logLevel: 'silent',
     quiet: true
   }),
@@ -25,11 +26,11 @@ const middleware = [
 browserSync.init({
   middleware,
   proxy: {
-    target: 'http://wp4wp.loc',
+    target: proxyTarget,
     middleware
   },
   logLevel: 'silent',
-  files: ['**/*.php'].map(element => path.resolve('../', element)),
+  files: watch.map(element => path.resolve(element)),
   snippetOptions: {
     rule: {
       match:  /<\/head>/i,

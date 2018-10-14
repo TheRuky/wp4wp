@@ -7,28 +7,26 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const NonJsEntryCleanupPlugin = require('./non-js-entry-cleanup-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
+const { context, entry, devtool, outputFolder, publicFolder } = require('./config');
+
 const HMR = require('./hmr');
 const getPublicPath = require('./publicPath');
 
 module.exports = (options) => {
   const { dev } = options;
-  const entry = {
-    styles: './styles/main.scss',
-    scripts: './scripts/main.js'
-  }
   const hmr = HMR.getClient();
 
   return {
     mode: dev ? 'development' : 'production',
-    devtool: dev ? 'cheap-module-eval-source-map' : false,
-    context: path.resolve('assets'),
+    devtool: dev ?  devtool : false,
+    context: path.resolve(context),
     entry: {
       'styles/main': dev ? [hmr, entry.styles] : entry.styles,
       'scripts/main': dev ? [hmr, entry.scripts] : entry.scripts,
     },
     output: {
-      path: path.resolve('../assets'),
-      publicPath: getPublicPath('assets'),
+      path: path.resolve(outputFolder),
+      publicPath: getPublicPath(publicFolder),
       filename: '[name].js'
     },
     module: {
@@ -82,15 +80,15 @@ module.exports = (options) => {
           includeSubfolders: true
         }),
         new CleanWebpackPlugin([
-          path.resolve('../assets')
+          path.resolve(outputFolder)
         ], {
           allowExternal: true,
           beforeEmit: true
         }),
         new CopyWebpackPlugin([
           {
-            from: path.resolve('assets/**/*'),
-            to: path.resolve('../assets'),
+            from: path.resolve(`${context}/**/*`),
+            to: path.resolve(outputFolder),
           }
         ], {
           ignore: [ '*.js', '*.ts', '*.scss', '*.css' ]

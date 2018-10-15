@@ -35,7 +35,7 @@ browserSync.init({
     rule: {
       match:  /<\/head>/i,
       fn: function(snippet, match) {
-        return `<script src="/assets/styles/main.js"></script>${snippet}${match}`
+        return `<script src="${getPublicPath(publicFolder)}styles/main.js"></script>${snippet}${match}`
       }
     }
   }

@@ -8,4 +8,4 @@ In bundler root, first, run `yarn install` to install all the dependencies and t
 
 > NOTE: If you don't have Yarn, use `npm install`, `npm run serve` and `npm run build`. Or, if you want to have Yarn, use `npm install -g yarn` to install it globally for future use.
 
-**Minimal** configuration can be done in `compiler/config.js`.
+**Minimal** configuration can be done in `compiler/config.js`. Change the proxy target to the location of the WordPress site you want BrowserSync to proxy in development mode. BrowserSync will create proxy on `localhost:3000` or the first available port after that, if 3000 is taken.

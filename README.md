@@ -1,6 +1,6 @@
 # wp4wp
 
-⚠ **Requires [Node](https://nodejs.org/en/) 8.9.0 or greater.**
+⚠ **Requires [Node](https://nodejs.org/en/) 8.5.0 or greater.**
 
 Let's say your theme name is **xyz** and it's located in `wp-content/themes/xyz`. Bundler root (where `package.json` is) should be put in **a subfolder**, for example `resources`. So, path to `package.json` would be `wp-content/themes/xyz/resources/package.json`.
 

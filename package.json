@@ -28,6 +28,9 @@
     "bb >= 10",
     "not dead"
   ],
+  "engines": {
+    "node": ">= 8.5.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
